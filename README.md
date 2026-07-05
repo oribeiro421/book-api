@@ -19,7 +19,6 @@ API REST para gerenciamento de livros.
 - Buscar todos os livros
 - Atualizar livro
 - Excluir livro
-- Validação de dados
 
 ## Links apos execução do projeto
 
