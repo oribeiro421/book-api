@@ -41,15 +41,16 @@ class BookServiceTest {
     void shouldUpdateBookSuccessfully() {
         Book existingBook = createBook();
         Book updatedBook = new Book();
-        updatedBook.setTitle("Clean Code");
+        updatedBook.setTitle("Maze Runner: Prova de Fogo");
+        updatedBook.setPublicationYear(2010);
 
         when(bookRepository.findById(1L)).thenReturn(Optional.of(existingBook));
         when(bookRepository.save(any(Book.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         Book result = bookService.update(1L, updatedBook);
-        assertEquals("Clean Code", result.getTitle());
-        assertEquals("Robert Martin", result.getAuthor());
-        assertEquals(2008, result.getPublicationYear());
+        assertEquals("Maze Runner: Prova de Fogo", result.getTitle());
+        assertEquals("James Dasher", result.getAuthor());
+        assertEquals(2010, result.getPublicationYear());
 
         verify(bookRepository).findById(1L);
         verify(bookRepository).save(existingBook);
@@ -90,9 +91,9 @@ class BookServiceTest {
     private Book createBook() {
         Book book = new Book();
         book.setId(1L);
-        book.setTitle("Effective Java");
-        book.setAuthor("Robert Martin");
-        book.setPublicationYear(2008);
+        book.setTitle("Maze Runner");
+        book.setAuthor("James Dasher");
+        book.setPublicationYear(2009);
         return book;
     }
 }
